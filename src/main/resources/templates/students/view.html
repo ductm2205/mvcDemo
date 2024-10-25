@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Details</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <h1 class="mb-4">Student Details</h1>
+
+    <div th:if="${student}" class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">ID</dt>
+                <dd class="col-sm-9" th:text="${student.id}">1</dd>
+
+                <dt class="col-sm-3">Name</dt>
+                <dd class="col-sm-9" th:text="${student.name}">John</dd>
+
+                <dt class="col-sm-3">Age</dt>
+                <dd class="col-sm-9" th:text="${student.age}">20</dd>
+
+                <dt class="col-sm-3">Address</dt>
+                <dd class="col-sm-9" th:text="${student.address}">123 Street</dd>
+            </dl>
+
+            <div class="d-flex gap-2">
+                <a th:href="@{/students/{id}/edit(id=${student.id})}"
+                   class="btn btn-primary">Edit</a>
+                <a th:href="@{/students/{id}/delete(id=${student.id})}"
+                   onclick="return confirm('Are you sure?')"
+                   class="btn btn-danger">Delete</a>
+                <a th:href="@{/students}" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+
+    <div th:unless="${student}" class="alert alert-warning">
+        <p class="mb-0">Student not found.</p>
+        <a th:href="@{/students}" class="btn btn-secondary mt-3">Back to List</a>
+    </div>
+</div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Student</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <h1 class="mb-4">Edit Student</h1>
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/students/{id}(id=${student.id})}" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" th:value="${student.name}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="age" class="form-label">Age</label>
+                    <input type="number" class="form-control" id="age" name="age" th:value="${student.age}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <textarea class="form-control" id="address" name="address" rows="3" th:text="${student.address}" required></textarea>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Update Student</button>
+                    <a th:href="@{/students}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
